@@ -24,23 +24,26 @@ function Signup() {
       confirmPassword: values.confirmPassword,
     };
 
-    const response = await signUp(data);
-    if (response.status === 201) {
-      const user = {
-        _id: response.data.user._id,
-        email: response.data.user.email,
-        userName: response.data.user.userName,
-        auth: response.data.auth,
-      };
+    try {
+      const response = await signUp(data);
+      if (response.status === 201) {
+        const user = {
+          _id: response.data.user._id,
+          email: response.data.user.email,
+          userName: response.data.user.userName,
+          auth: response.data.auth,
+        };
 
-      dispatch(setUser(user));
-      navigate("/");
-    } else if (response.code === "ERR_BAD_REQUEST") {
-      setError(response.response.data.message);
-    } else {
-      // display error
-      console.log(response);
-      setError(response.response.data.message);
+        dispatch(setUser(user));
+        navigate("/");
+      } else {
+        // Handle other non-201 responses here
+        setError(response.response.data.message);
+      }
+    } catch (error) {
+      // Handle network or other errors here
+      console.error(error);
+      setError("An error occurred. Please try again later.");
     }
   };
 
