@@ -104,11 +104,12 @@ const authController = {
     // creating data transfer object
     const userDto = new UserDto(user);
     // send response
-    res.status(200).json({ user: userDto, auth: true });
+    res.status(201).json({ user: userDto, auth: true });
   },
 
   // login
   async login(req, res, next) {
+    console.log(req.body);
     // validate User input
 
     const userLoginSchema = Joi.object({
@@ -127,6 +128,7 @@ const authController = {
     let user;
     try {
       // match Username
+      console.log("Login");
       user = await User.findOne({ userName: { $eq: userName } });
 
       // match Username
@@ -198,6 +200,7 @@ const authController = {
       user: userDto,
       auth: true,
     });
+    console.log(userDto);
   },
 
   // Logout

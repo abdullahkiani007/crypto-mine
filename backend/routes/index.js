@@ -48,6 +48,13 @@ const createComment = router.post("/comment", auth, commentController.create);
 // get
 const getComment = router.get("/comment/:id", auth, commentController.getById);
 
+//delete
+const deleteComment = router.delete(
+  "/comment/:id",
+  auth,
+  commentController.delete
+);
+
 export default {
   testRoute,
   regRoute,
@@ -61,4 +68,5 @@ export default {
   deleteBlog,
   createComment,
   getComment,
+  deleteComment,
 };

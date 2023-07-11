@@ -1,0 +1,47 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.myCustomStyle h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: bold;
+    /* Heading 1 style */
+  }
+  
+  .myCustomStyle h2 {
+    /* Heading 2 style */
+    font-size: 1.25rem;
+    line-height: 1/75rem;
+    font-weight: bold;
+  }
+  
+  .myCustomStyle h3 {
+    /* Heading 3 style */
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: bold;
+  }
+  
+  .myCustomStyle h4 {
+    /* Heading 4 style */
+
+  }
+  
+  .myCustomStyle h5 {
+    /* Heading 5 style */
+  }
+  
+  .myCustomStyle h6 {
+    /* Heading 6 style */
+  }
+  
+  .myCustomStyle ul,
+  .myCustomStyle ol {
+    list-style-type: disc;
+    list-style-position: inside;
+    
+  }
+  

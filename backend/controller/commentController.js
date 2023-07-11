@@ -70,6 +70,31 @@ const commentController = {
       data: comments,
     });
   },
+  async delete(req, res, next) {
+    const commentSchema = Joi.object({
+      id: Joi.string()
+        .regex(/^[0-9a-fA-F]{24}$/)
+        .required(),
+    });
+
+    const id = req.params;
+    console.log("delete", id);
+
+    const { error } = commentSchema.validate({ id: req.params.id.trim() });
+
+    if (error) {
+      return next(error);
+    } else {
+      try {
+        await Comment.deleteOne({ _id: req.params.id.trim() });
+        res.status(200).json({
+          message: "Comment deleted",
+        });
+      } catch (error) {
+        return next(error);
+      }
+    }
+  },
 };
 
 export default commentController;

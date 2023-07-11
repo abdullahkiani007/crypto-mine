@@ -31,14 +31,14 @@ const blogController = {
     // cliend side --> base 64 encoded string --> decode --> store
 
     const { title, content, author, photo } = req.body;
-
+    console.log("Create A blog:", req.body);
     // read as buffer
     const buffer = Buffer.from(
       photo.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""),
       "base64"
     );
     // allot a random name
-    const imagePath = `${Date.now()}-${author}.png`;
+    const imagePath = `${Date.now()}-${author}.PNG`;
     // save locally
     try {
       fs.writeFileSync(`storage/${imagePath}`, buffer);
@@ -66,10 +66,12 @@ const blogController = {
       blog: blogdto,
     });
   },
+
+  // getAllBlog
   async getAllBlog(req, res, next) {
-    console.log("I am heree");
     try {
       const blog = await Blog.find({});
+      console.log(blog);
       const blogsDto = blog.map((item) => {
         const newDto = new blogDTO(item);
         return newDto;
@@ -107,6 +109,8 @@ const blogController = {
       return next(error);
     }
   },
+
+  // update blog
   async updateBlog(req, res, next) {
     // validate
     //
@@ -120,7 +124,7 @@ const blogController = {
       blogId: Joi.string()
         .regex(/^[0-9a-fA-F]{24}$/)
         .required(),
-      photo: Joi.string(),
+      photo: Joi.any(),
     });
 
     const { error } = updateBlogSchema.validate(req.body);
@@ -139,7 +143,7 @@ const blogController = {
       return next(error);
     }
     if (photo) {
-      let previousPhoto = blog.photoPath;
+      let previousPhoto = blog.photoDest;
       previousPhoto = previousPhoto.split("/").at(-1);
 
       // delete previous photo
@@ -165,7 +169,7 @@ const blogController = {
         {
           title,
           content,
-          photoPath: `${process.env.BACKEND_SERVER_PATH}/storage/${imagePath}`,
+          photoDest: `${process.env.BACKEND_SERVER_PATH}/storage/${imagePath}`,
         }
       );
     } else {
