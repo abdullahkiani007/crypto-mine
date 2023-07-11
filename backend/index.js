@@ -16,7 +16,7 @@ app.use("/storage", express.static("storage"));
 console.log(process.env.FRONTEND_URI);
 const corsOptions = {
   credentials: true,
-  origin: [process.env.FRONTEND_URI],
+  origin: [process.env.FRONTEND_URI, "https://cryptomineapp.vercel.app/"],
 };
 app.options("*", cors(corsOptions));
 
