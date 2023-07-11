@@ -3,17 +3,20 @@ import connectDb from "./database/index.js";
 import routes from "./routes/index.js";
 import errorHandler from "./middleware/errorHandling.js";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
 import cors from "cors";
+
+dotenv.config();
 
 const app = express();
 app.use(express.json({ limit: "50mb" }));
 
 app.use(cookieParser());
 app.use("/storage", express.static("storage"));
-
+console.log(process.env.FRONTEND_URI);
 const corsOptions = {
   credentials: true,
-  origin: ["http://localhost:5173"],
+  origin: [process.env.FRONTEND_URI],
 };
 app.options("*", cors(corsOptions));
 

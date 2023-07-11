@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: `${import.meta.env.VITE_BASE_URL}`,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -10,7 +10,7 @@ const api = axios.create({
 
 export const login = async (data) => {
   let response;
-
+  console.log(import.meta.env.VITE_BASE_URL);
   try {
     response = await api.post("/login", data);
   } catch (error) {
