@@ -28,7 +28,7 @@ app.get("/hi", (req, res) => {
     message: "Yooo wassup",
   });
 });
-app.use("/api/", routes.testRoute);
+app.use("/api", routes.testRoute);
 app.use(routes.regRoute);
 app.use(routes.loginRoute);
 app.use(routes.logoutRoute);
