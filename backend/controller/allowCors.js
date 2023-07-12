@@ -1,14 +1,15 @@
-// allowCors.js
 const allowCors = (req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
 
-  if (req.headers.origin) {
-    console.log(req.headers.origin);
-    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
-    res.setHeader(
-      "Access-Control-Allow-Origin",
-      "https://cryptomineapp.vercel.app"
-    );
+  // Allow requests from specific origins
+  const allowedOrigins = [
+    process.env.FRONTEND_URI,
+    "https://cryptomineapp.vercel.app",
+  ];
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
   }
 
   res.setHeader(

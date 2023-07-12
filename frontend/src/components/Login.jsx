@@ -44,9 +44,9 @@ function Login() {
       setError(response.response.data.message);
     } else {
       // display error
-      // console.log(response);
+      console.log(response);
       setLoading(false);
-      setError(response.data.message);
+      setError(response.message);
     }
   };
 
