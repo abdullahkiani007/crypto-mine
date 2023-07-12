@@ -13,6 +13,7 @@ export const login = async (data) => {
   console.log(import.meta.env.VITE_BASE_URL);
   try {
     response = await api.post("/login", data);
+    console.log(response);
   } catch (error) {
     return error;
   }
