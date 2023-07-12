@@ -5,6 +5,10 @@ const allowCors = (req, res, next) => {
   if (req.headers.origin) {
     console.log(req.headers.origin);
     res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+    res.setHeader(
+      "Access-Control-Allow-Origin",
+      "https://cryptomineapp.vercel.app"
+    );
   }
 
   res.setHeader(

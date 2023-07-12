@@ -38,7 +38,7 @@ function Signup() {
         navigate("/");
       } else {
         // Handle other non-201 responses here
-        setError(response.response.data.message);
+        setError(response.data.message);
       }
     } catch (error) {
       // Handle network or other errors here
