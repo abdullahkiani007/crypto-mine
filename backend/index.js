@@ -23,7 +23,11 @@ app.options("*", cors(corsOptions));
 
 app.use(cors(corsOptions));
 app.use(allowCors);
-
+app.get("/hi", (req, res) => {
+  res.status(200).json({
+    message: "Yooo wassup",
+  });
+});
 app.use(routes.testRoute);
 app.use(routes.regRoute);
 app.use(routes.loginRoute);
