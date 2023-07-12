@@ -9,6 +9,7 @@ const api = axios.create({
 });
 
 export const login = async (data) => {
+  console.log(data);
   let response;
   console.log(import.meta.env.VITE_BASE_URL);
   try {
