@@ -5,6 +5,7 @@ import errorHandler from "./middleware/errorHandling.js";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import cors from "cors";
+import allowCors from "./controller/allowCors.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ const corsOptions = {
 app.options("*", cors(corsOptions));
 
 app.use(cors(corsOptions));
+app.use(allowCors);
 
 app.use(routes.testRoute);
 app.use(routes.regRoute);
