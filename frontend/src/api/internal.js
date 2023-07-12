@@ -21,6 +21,7 @@ export const login = async (data) => {
 
 export const signUp = async (data) => {
   let response;
+  console.log("signup", response);
   try {
     response = await api.post("/register", data);
   } catch (error) {
