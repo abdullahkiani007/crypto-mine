@@ -14,20 +14,21 @@ app.use(express.json({ limit: "50mb" }));
 
 app.use(cookieParser());
 app.use("/storage", express.static("storage"));
-console.log(process.env.FRONTEND_URI);
+
 const corsOptions = {
   credentials: true,
   origin: [process.env.FRONTEND_URI, "https://cryptomineapp.vercel.app"],
 };
-app.options("*", cors(corsOptions));
 
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(allowCors);
 app.get("/hi", (req, res) => {
   res.status(200).json({
     message: "Yooo wassup",
   });
 });
+
 app.use("/api", routes.testRoute);
 app.use(routes.regRoute);
 app.use(routes.loginRoute);
